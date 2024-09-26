@@ -1,0 +1,73 @@
+
+ Mô tả dự án Landmark Remark
+
+ 1. Giới thiệu
+
+    Dự án   Landmark Remark   là một ứng dụng di động cho phép người dùng lưu các ghi chú dựa trên vị trí trên bản đồ   Google Maps  .
+    Các ghi chú này được lưu trữ và đồng bộ hóa trong   Firebase Realtime Database  .
+    Người dùng có thể tìm kiếm, xem và thêm ghi chú mới trực tiếp trên bản đồ.
+
+
+    Đặc điểm chính
+    Lưu vị trí: Nhấn lâu trên bản đồ để thêm ghi chú với vị trí cụ thể.
+    Tìm kiếm ghi chú: Tìm kiếm các ghi chú theo tên hoặc nội dung.
+    Đồng bộ dữ liệu: Ghi chú được lưu và đồng bộ hóa thời gian thực trên Firebase.
+    Hiển thị vị trí: Tất cả các ghi chú được hiển thị trên bản đồ Google Maps.
+
+
+ 2. Công nghệ sử dụng
+    -   Kotlin
+    -   Firebase Realtime Database  : Lưu trữ và đồng bộ dữ liệu thời gian thực giữa các thiết bị.
+    -   Google Maps SDK for Android  : Hiển thị bản đồ và các vị trí của ghi chú.
+
+ 3. Các thành phần chính của dự án
+
+     3.1. MainActivity.kt
+     -Chức năng  :
+          - Khởi tạo bản đồ Google Maps và hiển thị các ghi chú vị trí đã lưu.
+          - Xử lý sự kiện   long-click   trên bản đồ để thêm ghi chú.
+          - Tìm kiếm ghi chú theo từ khóa và hiển thị kết quả trên bản đồ.
+          - Yêu cầu quyền truy cập vị trí từ người dùng và hiển thị vị trí hiện tại.
+
+     3.2. FirebaseHelper.kt
+     -Chức năng  :
+      - Tương tác với   Firebase Realtime Database   để lưu và tải dữ liệu ghi chú.
+      - Hỗ trợ tìm kiếm các ghi chú theo từ khóa.
+      - Quản lý các sự kiện liên quan đến việc đọc, ghi và tìm kiếm dữ liệu trong Firebase.
+
+     3.3. LocationNote.kt
+     - Mô tả  :
+      - Đây là   data class   đại diện cho một ghi chú với các trường:
+        - `name`: Tên của ghi chú.
+        - `note`: Nội dung ghi chú.
+        - `latitude`: Vĩ độ của vị trí ghi chú.
+        - `longitude`: Kinh độ của vị trí ghi chú.
+
+     3.4. AddNoteDialog.kt
+      -Chức năng  :
+      - Hiển thị một hộp thoại cho phép người dùng nhập   tên   và   nội dung   ghi chú.
+      - Khi người dùng nhấn lưu, dữ liệu sẽ được gửi đến   MainActivity   để xử lý và lưu vào Firebase.
+
+ 4. Firebase Realtime Database
+        - Firebase cung cấp dịch vụ   lưu trữ và đồng bộ hóa dữ liệu thời gian thực   giữa các thiết bị. Mọi thay đổi trong dữ liệu sẽ được cập nhật ngay lập tức cho tất cả các thiết bị đang kết nối.
+        - Trong dự án này, các thông tin về ghi chú (tên, nội dung, tọa độ vị trí) được lưu trữ dưới dạng các đối tượng trong   Firebase Realtime Database  .
+
+ 5. Google Maps SDK for Android
+          - Google Maps SDK for Android   được sử dụng để hiển thị bản đồ trong ứng dụng, cho phép người dùng tương tác với bản đồ như:
+          - Tạo các   ghi chú   dựa trên vị trí.
+          - Tìm kiếm các ghi chú đã lưu và hiển thị chúng trực tiếp trên bản đồ.
+
+ 6. Cài đặt
+        1.   Firebase  :
+           - Tạo một dự án Firebase trên   Firebase Console   và cấu hình   Realtime Database  .
+           - Tải file   google-services.json   và thêm vào thư mục `app` trong dự án.
+        2.   Google Maps API Key  :
+           - Tạo một API Key trên   Google Cloud Console   và thêm vào file   AndroidManifest.xml  .
+        3.   Cài đặt các thư viện  :
+           - Thêm các thư viện Firebase và Google Maps vào file   build.gradle   của dự án.
+        4.   Chạy ứng dụng  :
+           - Biên dịch và chạy ứng dụng trên thiết bị hoặc trình giả lập.
+ 7. Cách dùng và ví dụ
+  -   Thêm ghi chú: Nhấn giữ trên bản đồ để thêm ghi chú tại vị trí cụ thể.
+  -   Tìm kiếm ghi chú: Sử dụng thanh tìm kiếm để tìm kiếm ghi chú theo tên hoặc nội dung.
+  -   Xem lại ghi chú: Tất cả các ghi chú được hiển thị dưới dạng marker trên bản đồ, có thể nhấn vào để xem chi tiết.
